@@ -53,6 +53,11 @@ app.use((err, req, res, next) => {
 })
 app.use(errorHandler());
 app.post('/access', (req, res) => {
+  if (req.body.token === undefined || req.body.token !== '71c463c3d908fd07c14f784f622ea8b6') {
+    res.status(300);
+    return;
+  }
+
   let access = (req.body.code || '').trim();
   let index = codes.indexOf(access);
   if (codes !== undefined && index !== -1) {
