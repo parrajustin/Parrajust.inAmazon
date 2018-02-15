@@ -56,7 +56,7 @@ app.post('/access', (req, res) => {
   let access = (req.body.code || '').trim();
   let index = codes.indexOf(access);
   if (codes !== undefined && index !== -1) {
-    codes.splice(index);
+    codes.splice(index, 1);
 
     jsonfile.writeFile(file, codes, function (err) {
       if (err) {
