@@ -11,46 +11,63 @@ const methodOverride = require("method-override");
 const logger = require("morgan");
 const path = require("path");
 const express = require("express");
+const jsonfile = require('jsonfile');
 const app = express();
+
+var file = 'data.json'
+var codes = undefined;
+jsonfile.readFile(file, function(err, obj) {
+  if (err) {
+    throw new Error(err.message);
+  }
+
+  codes = obj;
+})
 
 //create http server
 var httpPort = normalizePort(8080);
 
 // Express config;
 app.get('/access', (req, res) => {
-    res.send('hello test');
+  res.send('hello test');
 });
 //app.use('/', express.static(path.join(__dirname, 'public')));
 const allowCrossDomain = (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,POST');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
 };
 app.use(allowCrossDomain);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(compression());
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
 app.use(cookieParser('WEBSITE_SECRET'));
 app.use(methodOverride());
 app.use((err, req, res, next) => {
-    err.status = 404;
-    next(err);
+  err.status = 404;
+  next(err);
 })
 app.use(errorHandler());
 app.post('/access', (req, res) => {
-	console.log('test');
-	console.log(req.body);
+  let access = (req.body.code || '').trim();
+  let index = codes.indexOf(access);
+  if (codes !== undefined && index !== -1) {
+    codes.splice(index);
 
-    	let access = (req.body.code || '').trim();
-    	if (access.length === 12) {
-    		res.status(200).json({ success: true });
-	} else {
-		res.status(300).json({ success: false });
-	}
+    jsonfile.writeFile(file, codes, function (err) {
+      if (err) {
+        throw new Error(err.message);
+      }
+    });
+
+    res.status(200).json({ success: true });
+  } else {
+    res.status(300).json({ success: false });
+  }
 });
 
 const httpServer = http.createServer(app);
@@ -65,14 +82,14 @@ httpServer.on("error", onError);
 httpServer.on("listening", onListening);
 
 // listen for TERM signal .e.g. kill 
-process.on ('SIGTERM', gracefulShutdown);
+process.on('SIGTERM', gracefulShutdown);
 
 // listen for INT signal e.g. Ctrl-C
-process.on ('SIGINT', gracefulShutdown);
+process.on('SIGINT', gracefulShutdown);
 
 function gracefulShutdown() {
   console.log("Received kill signal, shutting down gracefully.");
-  httpServer.close(function() {
+  httpServer.close(function () {
     console.log("Closed out remaining connections.");
     process.exit()
   });
