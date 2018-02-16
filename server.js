@@ -54,7 +54,7 @@ app.use((err, req, res, next) => {
 app.use(errorHandler());
 app.post('/access', (req, res) => {
   if (req.body.token === undefined || req.body.token !== '71c463c3d908fd07c14f784f622ea8b6') {
-    res.status(300).json({ success: false, reason: 'all calls require a token' });
+    res.status(300).json({ success: false, reason: 'All calls require an api key!' });
     return;
   }
 
@@ -71,7 +71,7 @@ app.post('/access', (req, res) => {
 
     res.status(200).json({ success: true });
   } else {
-    res.status(300).json({ success: false, reason: 'the provided access code was invalid' });
+    res.status(300).json({ success: false, reason: 'The provided access code was invalid' });
   }
 });
 
