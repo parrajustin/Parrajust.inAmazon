@@ -81,8 +81,6 @@ app.get('/admin', basicAuth({
   challenge: true,
   realm: 'MspCompanionChallenge',
 }), (req, res) => {
-  console.log(req.body);
-  console.log(req.auth);
   res.status(200).sendFile(path.join(__dirname, 'public', 'token.html'));
 });
 app.post('/admin', basicAuth({
@@ -94,7 +92,7 @@ app.post('/admin', basicAuth({
   if (req.body['_id'] === '') {
     db.collection("tokens").findOne({ token: req.body['token'] }, function(err, result) {
       if (err || result !== null) {
-        res.status(200).sendFile(path.join(__dirname, 'public', 'token.html'));
+        res.redirect('/admin');
         return;
       }
 
@@ -103,13 +101,13 @@ app.post('/admin', basicAuth({
           { 
             token: req.body['token'], 
             forName: req.body['name'], 
-            used: req.body['used'] == 'true', 
+            used: req.body['used'] == 'on', 
             created: date, 
             createdBy: req.auth['user'], 
             updated: date
           }
         );
-        res.status(200).sendFile(path.join(__dirname, 'public', 'token.html'));
+        res.redirect('/admin');
       }
     });
   } else {
@@ -121,13 +119,13 @@ app.post('/admin', basicAuth({
         { 
           token: req.body['token'], 
           forName: req.body['name'],
-          used: req.body['used'] == 'true',
+          used: req.body['used'] == 'on',
           updated: date
         } 
       }, // replacement, replaces only the field "hi"
       {}, // options
       function (err, object) {
-        res.status(200).sendFile(path.join(__dirname, 'public', 'token.html'));
+        res.redirect('/admin');
       }
     );
   }
