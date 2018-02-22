@@ -93,7 +93,7 @@ app.post('/admin', basicAuth({
   const date = new Date()
   if (req.body['_id'] === '') {
     db.collection("tokens").findOne({ token: req.body['token'] }, function(err, result) {
-      if (err) {
+      if (err || result !== null) {
         res.status(200).sendFile(path.join(__dirname, 'public', 'token.html'));
         return;
       }
