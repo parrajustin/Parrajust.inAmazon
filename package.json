@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "pm2 start process.json",
+    "stop": "pm2 stop web",
+    "list": "pm2 list",
+    "debug": "node server.js"
   },
   "author": "Justin Parra",
   "license": "MIT",
