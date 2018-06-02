@@ -1,0 +1,23 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "parrajust.in Website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2 start process.json",
+    "stop": "pm2 stop web",
+    "list": "pm2 list",
+    "debug": "node server.js"
+  },
+  "author": "Justin Parra",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parrajustin/Parrajust.inAmazon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/parrajustin/Parrajust.inAmazon/issues"
+  },
+  "homepage": "https://github.com/parrajustin/Parrajust.inAmazon#readme"
+}
