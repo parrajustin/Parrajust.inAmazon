@@ -17,18 +17,20 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
-        "/assets/images/profile.png",
-        "/assets/images/user.png"
+        "/assets/images/user-fs8.png",
+        "/assets/images/user.png",
+        "/assets/images/user.webp"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/assets/images/profile.png": "f1d8c37876a9ed4241525ad01a92d6f507b8d030",
+    "/assets/images/user-fs8.png": "6298d35c7a12ac579ef8e0a0e42bbbdc203e9372",
     "/assets/images/user.png": "43b20b723341392c94c118f3af3de75818dc1bd1",
+    "/assets/images/user.webp": "f3c9df564709ef12acb30d318273de928ebd972f",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "7f336b6734553501804ff55dc03cf7e5e3af7145"
+    "/index.html": "5eec37cb9ecdb3ef653e3e25160ea64bf5cce634"
   },
   "navigationUrls": [
     {
