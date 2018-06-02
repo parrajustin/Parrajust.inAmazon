@@ -4,11 +4,16 @@
   "assetGroups": [
     {
       "name": "app",
-      "installMode": "prefetch",
+      "installMode": "lazy",
       "updateMode": "prefetch",
       "urls": [
+        "/0.5d6a09b9a59812cb0e21.js",
         "/favicon.ico",
-        "/index.html"
+        "/index.html",
+        "/main.c05cf3ea27818427be17.js",
+        "/polyfills.a7268db9f9cebb5fa952.js",
+        "/runtime.edfb68cb8f966c8537f4.js",
+        "/vendor.3e587c78cd62b1ab4a4d.js"
       ],
       "patterns": []
     },
@@ -26,11 +31,16 @@
   ],
   "dataGroups": [],
   "hashTable": {
+    "/0.5d6a09b9a59812cb0e21.js": "cd1e6ed5adecdbc4a34f89f08bc860ae772af550",
     "/assets/images/user-fs8.png": "6298d35c7a12ac579ef8e0a0e42bbbdc203e9372",
     "/assets/images/user.png": "43b20b723341392c94c118f3af3de75818dc1bd1",
     "/assets/images/user.webp": "f3c9df564709ef12acb30d318273de928ebd972f",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "ec266f23dfca32466d94db75e675a14f962dabd1"
+    "/index.html": "ec266f23dfca32466d94db75e675a14f962dabd1",
+    "/main.c05cf3ea27818427be17.js": "c188e557949de374beff4e91a381c8515248c00a",
+    "/polyfills.a7268db9f9cebb5fa952.js": "f9c0853da791e10f234b38ea671aaa1cd33c054d",
+    "/runtime.edfb68cb8f966c8537f4.js": "d1fe7c6203b42dcd23825ae715c0554dbcadb074",
+    "/vendor.3e587c78cd62b1ab4a4d.js": "36d53897f47fe3be0ea299a408a761e418e22c25"
   },
   "navigationUrls": [
     {
